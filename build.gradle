@@ -24,6 +24,8 @@ dependencies {
     // org.seleniumhq.selenium:selenium-java и io.github.bonigarcia:webdrivermanager
     // testImplementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
     // testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    testImplementation("io.github.bonigarcia:webdrivermanager:5.5.3")
+
 }
 
 test {

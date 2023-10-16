@@ -7,13 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 public class BankCardTest {
-    private WebDriver driver;
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("--no-sandbox");
-    options.addArguments("--headless");
-    driver = new ChromeDriver(options);
+    private static WebDriver driver;
 
     @BeforeAll
     public static void setupAll() {
@@ -26,6 +23,11 @@ public class BankCardTest {
     @BeforeEach
     void setUp(){
         driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -35,7 +37,16 @@ public class BankCardTest {
     }
 
     @Test
-    void ban(){
-        throw new UnsupportedOperationException();
+    void ShouldOpenForm(){
+        driver.get("http://localhost:9999/");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Анастасия");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+9818042544");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.tagName("button")).click();
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+
+
     }
 }
