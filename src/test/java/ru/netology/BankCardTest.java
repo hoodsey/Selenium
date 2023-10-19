@@ -19,8 +19,7 @@ public class BankCardTest {
     }
 
     @BeforeEach
-    void setUp(){
-        driver = new ChromeDriver();
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -36,7 +35,7 @@ public class BankCardTest {
 
     @Test
     void ShouldSuccessForm(){
-        driver.get("http://localhost:9999/");
+        driver.get("http://0.0.0.0:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Кабакова Анастасия");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79818042544");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
